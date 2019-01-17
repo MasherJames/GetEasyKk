@@ -1,0 +1,28 @@
+{
+    "name": "geteasykk",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "server": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MasherJames/GetEasyKk.git"
+    },
+    "author": "James",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MasherJames/GetEasyKk/issues"
+    },
+    "homepage": "https://github.com/MasherJames/GetEasyKk#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "dotenv": "^6.2.0",
+        "express": "^4.16.4",
+        "mongoose": "^5.4.4"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.9"
+    }
+}
