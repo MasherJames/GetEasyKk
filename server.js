@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import db from "./config/config";
+import UserRouter from "./routes/api/user";
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -27,6 +28,8 @@ mongoose.connection
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use("/api/users/", UserRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}`);
