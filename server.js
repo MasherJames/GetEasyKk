@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import passport from "passport";
 import db from "./config/config";
 import UserRouter from "./routes/api/user";
 const port = process.env.PORT || 5000;
@@ -28,6 +29,9 @@ mongoose.connection
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 app.use("/api/users/", UserRouter);
 

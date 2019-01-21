@@ -11,4 +11,6 @@ router.post(
   userController.signup
 );
 
+router.post("/login", userValidator.loginCorrectCreds, userController.login);
+
 export default router;

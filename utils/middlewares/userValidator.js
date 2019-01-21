@@ -1,5 +1,6 @@
 import User from "../../models/User";
 import registerValidator from "../validators/register";
+import loginValidator from "../validators/login";
 
 export default class UserValidator {
   static correctCreds(req, res, next) {
@@ -22,5 +23,14 @@ export default class UserValidator {
         next();
       })
       .catch(next);
+  }
+
+  static loginCorrectCreds(req, res, next) {
+    const { errors, isValid } = loginValidator(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    next();
   }
 }
