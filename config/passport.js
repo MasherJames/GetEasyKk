@@ -12,7 +12,7 @@ opts.secretOrKey = config.SECRET_KEY;
 module.exports = passport => {
   passport.use(
     new JwtStrategy(opts, (pay_load, done) => {
-      User.findById({ email: pay_load.id })
+      User.findById(pay_load.id)
         .then(user => {
           if (user) {
             return done(null, user);
