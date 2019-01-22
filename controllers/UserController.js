@@ -44,7 +44,6 @@ export default class UserController {
       }
 
       bcrypt.compare(password, user.password).then(isMatch => {
-        console.log(isMatch);
         if (!isMatch) {
           return res.status(401).json({
             message: `Incorrect password for ${email}`

@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import passport from "passport";
 import db from "./config/config";
 import UserRouter from "./routes/api/user";
+import RideRouter from "./routes/api/ride";
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.use("/api/users/", UserRouter);
+app.use("/api/rides/", RideRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}`);
