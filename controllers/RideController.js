@@ -1,4 +1,5 @@
 import Ride from "../models/Ride";
+import User from "../models/User";
 export default class RideController {
   static createRide(req, res) {
     const newRide = new Ride({
@@ -38,5 +39,28 @@ export default class RideController {
           message: "No ride with this id"
         })
       );
+  }
+
+  static deleteRide(req, res) {
+    User.findById(req.user.id).then(user => {
+      Ride.findById(req.params.id)
+        .then(ride => {
+          if (ride.driver.toString() !== req.user.id) {
+            return res.status(401).json({
+              message: "Your are no allowed to delete this ride"
+            });
+          }
+          ride.remove().then(() =>
+            res.status(200).json({
+              message: "Ride deleted successfully"
+            })
+          );
+        })
+        .catch(err =>
+          res.status(404).json({
+            message: "No ride with this id"
+          })
+        );
+    });
   }
 }

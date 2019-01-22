@@ -24,4 +24,10 @@ router.get(
   rideController.getRide
 );
 
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  rideController.deleteRide
+);
+
 export default router;
