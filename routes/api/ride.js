@@ -12,4 +12,16 @@ router.post(
   rideController.createRide
 );
 
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  rideController.getRides
+);
+
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  rideController.getRide
+);
+
 export default router;
