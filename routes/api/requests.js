@@ -7,6 +7,7 @@ const router = express.Router();
 router.post(
   "/:id",
   passport.authenticate("jwt", { session: false }),
+  RequestValidator.uniqueRequest,
   RequestValidator.requestValidator,
   RequestController.requestRide
 );
