@@ -7,9 +7,19 @@ const requestSchema = new Schema({
     ref: "User"
   },
 
-  ride: {
+  driver: {
     type: Schema.Types.ObjectId,
-    ref: "Ride"
+    ref: "User"
+  },
+
+  origin: {
+    type: String,
+    required: true
+  },
+
+  destination: {
+    type: String,
+    required: true
   },
 
   seats: {

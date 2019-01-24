@@ -7,7 +7,9 @@ export default class RequestController {
       .then(ride => {
         const newRequest = new Request({
           requester: req.user.id,
-          ride: ride._id,
+          driver: ride.driver,
+          origin: ride.origin,
+          destination: ride.destination,
           seats: req.body.seats
         });
 
@@ -24,7 +26,19 @@ export default class RequestController {
         })
       );
   }
-  static getRequestsForSpecificRide(req, res) {}
+  static getRequestsForSpecificDriver(req, res) {
+    Request.find({ driver: req.params.id })
+      .then(rides => {
+        res.status(200).json(rides);
+      })
+      .catch(err => {
+        res.status(404).json({
+          message: "You don't have ride requests for now"
+        });
+      });
+  }
+
+  static getRequestsForSpecificRequester(req, res) {}
   static deleteRequest(req, res) {}
   static getRequestedRides(req, res) {}
   static getAcceptedRequests(req, res) {}

@@ -7,9 +7,14 @@ const router = express.Router();
 router.post(
   "/:id",
   passport.authenticate("jwt", { session: false }),
-  RequestValidator.uniqueRequest,
   RequestValidator.requestValidator,
   RequestController.requestRide
+);
+
+router.get(
+  "/:id/drivers",
+  passport.authenticate("jwt", { session: false }),
+  RequestController.getRequestsForSpecificDriver
 );
 
 export default router;
