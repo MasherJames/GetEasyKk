@@ -69,38 +69,28 @@ export default class RideController {
     });
   }
 
-  // static updateRide(req, res) {
-  //   const RideFields = {};
-  //   if (req.body.origin) RideFields.origin = req.body.origin;
-  //   if (req.body.destination) RideFields.destination = req.body.destination;
-  //   if (req.body.capacity) RideFields.capacity = req.body.capacity;
-  //   Ride.findOne({ driver: req.user.id })
-  //     .then(ride => {
-  //       if (ride.driver.toString() !== req.user.id) {
-  //         return res.status(401).json({
-  //           message: "You are not allowed to updated this ride"
-  //         });
-  //       }
-
-  //       ride
-  //         .findOneAndUpdate(
-  //           { _id: req.params.id },
-  //           { $set: req.body },
-  //           { new: true }
-  //         )
-  //         .then(ride => {
-  //           console.log(ride);
-  //           res.status(200).json({
-  //             message: "Ride update successfully",
-  //             ride
-  //           });
-  //         })
-  //         .catch(err => res.json(err));
-  //     })
-  //     .catch(err =>
-  //       res.status(404).json({
-  //         message: "No ride with that id"
-  //       })
-  //     );
-  // }
+  static updateRide(req, res) {
+    Ride.findById(req.params.id)
+      .then(ride => {
+        if (ride) {
+          Ride.findOneAndUpdate(
+            { _id: ride._id },
+            { $set: req.body },
+            { new: true }
+          )
+            .then(ride => {
+              res.status(200).json({
+                message: "Ride update successfully",
+                ride
+              });
+            })
+            .catch(err => res.json(err));
+        }
+      })
+      .catch(err =>
+        res.status(404).json({
+          message: "No ride with that id"
+        })
+      );
+  }
 }

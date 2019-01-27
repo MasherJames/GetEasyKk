@@ -30,11 +30,11 @@ router.delete(
   rideController.deleteRide
 );
 
-// router.put(
-//   "/:id",
-//   passport.authenticate("jwt", { session: false }),
-//   rideValidator.rideCorrectCredentials,
-//   rideController.updateRide
-// );
+router.put(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  rideValidator.rideCorrectCredentials,
+  rideController.updateRide
+);
 
 export default router;

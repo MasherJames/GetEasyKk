@@ -12,9 +12,15 @@ router.post(
 );
 
 router.get(
-  "/:id/drivers",
+  "/:id/users",
   passport.authenticate("jwt", { session: false }),
   RequestController.getRequestsForSpecificDriver
+);
+
+router.get(
+  "/:id/users",
+  passport.authenticate("jwt", { session: false }),
+  RequestController.getRequestsForSpecificRequester
 );
 
 export default router;

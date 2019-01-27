@@ -11,11 +11,11 @@ const rideValidator = data => {
     errors.destination = "Destination field is required";
   }
 
-  if (!data.origin.match(/^[a-zA-Z0-9]{2,}$/)) {
+  if (!data.origin.match(/^[a-zA-Z0-9 ]{2,}$/)) {
     errors.origin = "Origin must be above 2 characters";
   }
 
-  if (!data.destination.match(/^[a-zA-Z0-9]{2,}$/)) {
+  if (!data.destination.match(/^[a-zA-Z0-9 ]{2,}$/)) {
     errors.destination = "Destination must be above 2 characters";
   }
 

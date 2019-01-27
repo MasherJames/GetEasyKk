@@ -28,8 +28,13 @@ export default class RequestController {
   }
   static getRequestsForSpecificDriver(req, res) {
     Request.find({ driver: req.params.id })
-      .then(rides => {
-        res.status(200).json(rides);
+      .then(requests => {
+        if (requests.length < 1) {
+          return res.status(404).json({
+            message: "You don't have ride requests for now"
+          });
+        }
+        res.status(200).json({ requests });
       })
       .catch(err => {
         res.status(404).json({
@@ -38,10 +43,20 @@ export default class RequestController {
       });
   }
 
-  static getRequestsForSpecificRequester(req, res) {}
-  static deleteRequest(req, res) {}
-  static getRequestedRides(req, res) {}
-  static getAcceptedRequests(req, res) {}
-  static getDeclinedRequests(req, res) {}
-  static getPendingRequests(req, res) {}
+  static getRequestsForSpecificRequester(req, res) {
+    Request.find({ requester: req.params.id })
+      .then(requests => {
+        if (requests.length < 1) {
+          return res.status(404).json({
+            message: "You don't have ride requests for now"
+          });
+        }
+        res.status(200).json({ requests });
+      })
+      .catch(err =>
+        res
+          .status(404)
+          .json({ message: "You don't have ride requests for now" })
+      );
+  }
 }

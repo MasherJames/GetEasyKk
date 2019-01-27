@@ -7,7 +7,7 @@ const singUpValidator = data => {
     errors.username = "Username field is required";
   }
 
-  if (!data.username.match(/^[a-zA-Z0-9]{2,30}$/)) {
+  if (!data.username.match(/^[a-zA-Z0-9 ]{2,30}$/)) {
     errors.username = "Username must be between 2 and 30 characters";
   }
 
