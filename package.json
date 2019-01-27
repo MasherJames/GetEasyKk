@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "server": "nodemon start.js"
+        "server": "nodemon start.js",
+        "test": "NODE_ENV=testing mocha ./test/**/*.test.js --compilers js:babel-register"
     },
     "repository": {
         "type": "git",
@@ -28,9 +29,14 @@
         "passport-jwt": "^4.0.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.3.1",
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.7.0",
         "babel-register": "^6.26.0",
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.1",
+        "mocha": "^5.2.0",
         "nodemon": "^1.18.9"
     }
 }

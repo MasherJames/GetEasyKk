@@ -1,9 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import passport from "passport";
 
 import User from "../models/User";
-import config from "../config/config";
 
 export default class UserController {
   static signup(req, res) {
@@ -57,7 +55,7 @@ export default class UserController {
         };
         jwt.sign(
           payload,
-          config.SECRET_KEY,
+          process.env.SECRET_KEY,
           { expiresIn: 3600 },
           (err, token) => {
             res.status(200).json({
