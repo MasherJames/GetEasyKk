@@ -14,38 +14,42 @@ const env = process.env.NODE_ENV || "development";
 const config = configs[env];
 
 app.get("/", (req, res) => {
-  res.send("hello");
+    res.send("hello");
 });
 
 mongoose.connect(
-  config.DATABASE_URL,
-  { useNewUrlParser: true }
+    config.DATABASE_URL, {
+        useNewUrlParser: true
+    }
 );
 
 mongoose.connection
-  .once("open", () => {
-    console.log(
-      `Connection to the database successfully made ${config.DATABASE_URL}`
-    );
-  })
-  .on("error", error => {
-    console.log(error);
-  });
+    .once("open", () => {
+        console.log(
+            `Connection to the database successfully made ${config.DATABASE_URL}`
+        );
+    })
+    .on("error", error => {
+        console.log(error);
+    });
 
 // Thirdparty middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 app.use(passport.initialize());
-require("./config/passport")(passport);
+import func from "./config/passport";
+func(passport);
 
 app.use("/api/users/", UserRouter);
 app.use("/api/rides/", RideRouter);
 app.use("/api/requests/", RequestRouter);
 
 app.listen(port, () => {
-  console.log(`Server running at http://127.0.0.1:${port}`);
+    console.log(`Server running at http://127.0.0.1:${port}`);
 });
 
 export default app;

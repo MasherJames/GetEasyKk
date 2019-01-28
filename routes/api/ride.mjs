@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import rideController from "../../controllers/RideController";
-import rideValidator from "../../utils/middlewares/rideValidator";
+import rideValidator from "../../utils/middlewares/rideValidator.mjs";
 
 const router = express.Router();
 

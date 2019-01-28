@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "server": "nodemon start.js",
-        "test": "NODE_ENV=testing mocha ./test/**/*.test.js --compilers js:babel-register"
+        "server": "nodemon --experimental-modules server.mjs",
+        "test": "NODE_ENV=test nyc mocha --timeout=8000  --experimental-modules ./test/**/*.test.mjs"
     },
     "repository": {
         "type": "git",
@@ -32,11 +32,13 @@
         "@babel/core": "^7.2.2",
         "@babel/preset-env": "^7.3.1",
         "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
         "babel-preset-env": "^1.7.0",
         "babel-register": "^6.26.0",
         "chai": "^4.2.0",
         "chai-http": "^4.2.1",
         "mocha": "^5.2.0",
-        "nodemon": "^1.18.9"
+        "nodemon": "^1.18.9",
+        "nyc": "^13.1.0"
     }
 }

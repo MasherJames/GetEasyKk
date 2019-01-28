@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import RequestController from "../../controllers/RequestRideController";
-import RequestValidator from "../../utils/middlewares/request";
+import RequestValidator from "../../utils/middlewares/request.mjs";
 const router = express.Router();
 
 router.post(
