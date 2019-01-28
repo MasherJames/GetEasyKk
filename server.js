@@ -24,9 +24,7 @@ mongoose.connect(
 
 mongoose.connection
   .once("open", () => {
-    console.log(
-      `Connection to the database successfully made ${config.DATABASE_URL}`
-    );
+    console.log("Connection to the database successfully made");
   })
   .on("error", error => {
     console.log(error);
@@ -44,8 +42,8 @@ app.use("/api/users/", UserRouter);
 app.use("/api/rides/", RideRouter);
 app.use("/api/requests/", RequestRouter);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}`);
 });
 
-export default app;
+export { app, server };
