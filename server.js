@@ -40,7 +40,11 @@ require("./config/passport")(passport);
 
 app.use("/api/users/", UserRouter);
 app.use("/api/rides/", RideRouter);
-app.use("/api/requests/", RequestRouter);
+app.use(
+  "/api/requests/",
+  passport.authenticate("jwt", { session: false }),
+  RequestRouter
+);
 
 const server = app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}`);

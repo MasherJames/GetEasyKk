@@ -6,21 +6,12 @@ const router = express.Router();
 
 router.post(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
   RequestValidator.requestValidator,
   RequestController.requestRide
 );
 
-router.get(
-  "/:id/users",
-  passport.authenticate("jwt", { session: false }),
-  RequestController.getRequestsForSpecificDriver
-);
+router.get("/:id/users", RequestController.getRequestsForSpecificDriver);
 
-router.get(
-  "/:id/users",
-  passport.authenticate("jwt", { session: false }),
-  RequestController.getRequestsForSpecificRequester
-);
+router.get("/:id/users", RequestController.getRequestsForSpecificRequester);
 
 export default router;
