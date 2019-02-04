@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import AppRoutes from "./routes/AppRoutes";
 import "./App.css";
 
 class App extends Component {
   render() {
-    return <div>Hell0 world</div>;
+    return <AppRoutes />;
   }
 }
 
