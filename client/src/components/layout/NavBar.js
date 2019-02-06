@@ -6,7 +6,7 @@ export default class NavBar extends Component {
     return (
       <div>
         <nav className="header-nav navbar navbar-expand-sm bg-light bg-dark ">
-          <h2 class="nav-header">Ride My Way</h2>
+          <h2 className="nav-header">Ride My Way</h2>
           <ul className="header-nav__list-items navbar-nav ml-4">
             <li className="list-item nav-item">
               <Link to="/register" className="list-item__link nav-link">
