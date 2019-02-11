@@ -16,5 +16,5 @@ export const registerSuccessAction = response => ({
 
 export const registerFailureAction = response => ({
   type: REGISTER_CALL_FAILURE,
-  payload: response.message
+  payload: response
 });

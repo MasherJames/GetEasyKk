@@ -7,7 +7,7 @@ import {
 const initialState = {
   signingUp: false,
   success: "",
-  error: "",
+  errors: {},
   payload: {}
 };
 
@@ -18,7 +18,7 @@ const registerReducer = (state = initialState, action) => {
     case REGISTER_CALL_SUCCESS:
       return { ...state, signingUp: false, success: action.payload };
     case REGISTER_CALL_FAILURE:
-      return { ...state, signingUp: false, error: action.payload };
+      return { ...state, signingUp: false, errors: action.payload };
     default:
       return state;
   }

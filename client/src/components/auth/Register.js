@@ -31,17 +31,6 @@ class Register extends Component {
     };
 
     this.props.registerRequestAction(newUser);
-    this.clearInputs();
-  };
-
-  clearInputs = () => {
-    this.setState({
-      ...this.state,
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
   };
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +46,6 @@ class Register extends Component {
         <div className="container">
           <div className="col-md-8 m-auto">
             <p className="lead text-center">Create Your Account</p>
-
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <input
@@ -106,7 +94,7 @@ class Register extends Component {
               </div>
               <div className="form-group">
                 <input
-                  type="confirmPassword"
+                  type="password"
                   name="confirmPassword"
                   placeholder="confirmPassword"
                   value={this.props.confirmPassword}
@@ -131,7 +119,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-  errors: state.registerUser.error,
+  errors: state.registerUser.errors,
   success: state.registerUser.success,
   payload: state.registerUser.payload,
   signingUp: state.registerUser.signingUp
@@ -141,7 +129,7 @@ Register.propTypes = {
   registerRequestAction: PropTypes.func.isRequired,
   signingUp: PropTypes.bool.isRequired,
   success: PropTypes.string.isRequired,
-  errors: PropTypes.string.isRequired
+  errors: PropTypes.object.isRequired
 };
 
 export default connect(
