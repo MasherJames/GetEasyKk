@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerRequestAction } from "../../actions/registerActions";
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,20 +16,57 @@ export default class Register extends Component {
     };
   }
 
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const newUser = {
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword
+    };
+
+    this.props.registerRequestAction(newUser);
+    this.clearInputs();
+  };
+
+  clearInputs = () => {
+    this.setState({
+      ...this.state,
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    });
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
+    const { errors } = this.state;
     return (
       <div>
         <div className="container">
           <div className="col-md-8 m-auto">
             <p className="lead text-center">Create Your Account</p>
 
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label for="email">Email address:</label>
                 <input
                   type="email"
                   name="email"
-                  className={classnames("form-control", {
+                  placeholder="Email"
+                  value={this.props.email}
+                  onChange={this.handleChange}
+                  className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.email
                   })}
                 />
@@ -36,11 +75,13 @@ export default class Register extends Component {
                 )}
               </div>
               <div className="form-group">
-                <label for="username">Username:</label>
                 <input
                   type="username"
                   name="username"
-                  className={classnames("form-control", {
+                  placeholder="Username"
+                  value={this.props.username}
+                  onChange={this.handleChange}
+                  className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.username
                   })}
                 />
@@ -49,11 +90,13 @@ export default class Register extends Component {
                 )}
               </div>
               <div className="form-group">
-                <label for="password">Password:</label>
                 <input
                   type="password"
                   name="password"
-                  className={classnames("form-control", {
+                  placeholder="Password"
+                  value={this.props.password}
+                  onChange={this.handleChange}
+                  className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.password
                   })}
                 />
@@ -62,11 +105,13 @@ export default class Register extends Component {
                 )}
               </div>
               <div className="form-group">
-                <label for="confirmPassword">Confirm Password:</label>
                 <input
                   type="confirmPassword"
                   name="confirmPassword"
-                  className={classnames("form-control", {
+                  placeholder="confirmPassword"
+                  value={this.props.confirmPassword}
+                  onChange={this.handleChange}
+                  className={classnames("form-control form-control-lg", {
                     "is-invalid": errors.confirmPassword
                   })}
                 />
@@ -85,8 +130,21 @@ export default class Register extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  errors: state.registerUser.error,
+  success: state.registerUser.success,
+  payload: state.registerUser.payload,
+  signingUp: state.registerUser.signingUp
+});
+
 Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  registerRequestAction: PropTypes.func.isRequired,
+  signingUp: PropTypes.bool.isRequired,
+  success: PropTypes.string.isRequired,
+  errors: PropTypes.string.isRequired
 };
+
+export default connect(
+  mapStateToProps,
+  { registerRequestAction }
+)(Register);
