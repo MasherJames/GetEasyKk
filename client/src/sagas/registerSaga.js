@@ -5,6 +5,7 @@ import {
   registerFailureAction,
   registerSuccessAction
 } from "../actions/registerActions";
+import history from "../history";
 
 // Calls the register endpoint
 const registerUser = payload => axios.post("/api/users/signup", payload);
@@ -14,6 +15,7 @@ function* registerWorkerSaga(action) {
   try {
     const response = yield call(registerUser, action.payload);
     yield put(registerSuccessAction(response.data));
+    history.push("/login");
   } catch (error) {
     yield put(registerFailureAction(error.response.data));
   }

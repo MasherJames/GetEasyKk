@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import Landing from "../components/layout/Landing";
 import Footer from "../components/layout/Footer";
 import NavBar from "../components/layout/NavBar";
 import Register from "../components/auth/Register";
+import history from "../history";
 
 export default class AppRoutes extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <NavBar />
           <Switch>
