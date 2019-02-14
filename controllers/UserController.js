@@ -37,14 +37,14 @@ export default class UserController {
     User.findOne({ email }).then(user => {
       if (!user) {
         return res.status(404).json({
-          message: `user with email ${email} does not exist`
+          email: `user with email ${email} does not exist`
         });
       }
 
       bcrypt.compare(password, user.password).then(isMatch => {
         if (!isMatch) {
           return res.status(401).json({
-            message: `Incorrect password for ${email}`
+            password: `Incorrect password for ${email}`
           });
         }
 

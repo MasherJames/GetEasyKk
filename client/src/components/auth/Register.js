@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerRequestAction } from "../../actions/registerActions";
+import AlertBox from "../containers/alerts/AlertBox";
 
 class Register extends Component {
   constructor(props) {
@@ -40,10 +41,11 @@ class Register extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { success, errors } = this.state;
     return (
       <div>
         <div className="container">
+          {success && <AlertBox className="danger" message={success} />}
           <div className="col-md-8 m-auto">
             <p className="lead text-center">Create Your Account</p>
             <form onSubmit={this.handleSubmit}>
