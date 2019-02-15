@@ -2,7 +2,8 @@ import {
   LOGIN_CALL_REQUEST,
   LOGIN_CALL_SUCCESS,
   LOGIN_CALL_FAILURE,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  LOGOUT
 } from "../actionTypes/loginActionTypes";
 import isEmpty from "../utils/isEmpty";
 
@@ -29,6 +30,8 @@ const loginReducer = (state = initialState, action) => {
       return { ...state, logingIn: false, token: action.payload.token };
     case LOGIN_CALL_FAILURE:
       return { ...state, logingIn: false, errors: action.payload };
+    case LOGOUT:
+      return { ...state, payload: {}, isAuthenticated: false };
     default:
       return state;
   }

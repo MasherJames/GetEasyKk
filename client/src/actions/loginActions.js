@@ -2,8 +2,10 @@ import {
   LOGIN_CALL_REQUEST,
   LOGIN_CALL_SUCCESS,
   LOGIN_CALL_FAILURE,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  LOGOUT
 } from "../actionTypes/loginActionTypes";
+import { setAuthToken } from "../utils/auth";
 
 export const loginRequestAction = payload => ({
   type: LOGIN_CALL_REQUEST,
@@ -24,3 +26,11 @@ export const setCurrentUser = user => ({
   type: SET_CURRENT_USER,
   payload: user
 });
+
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+  setAuthToken(false);
+  return {
+    type: LOGOUT
+  };
+};

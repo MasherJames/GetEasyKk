@@ -17,6 +17,12 @@ class Register extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -124,7 +130,8 @@ const mapStateToProps = state => ({
   errors: state.registerUser.errors,
   success: state.registerUser.success,
   payload: state.registerUser.payload,
-  signingUp: state.registerUser.signingUp
+  signingUp: state.registerUser.signingUp,
+  isAuthenticated: state.loginUser.isAuthenticated
 });
 
 Register.propTypes = {
