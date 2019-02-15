@@ -82,13 +82,20 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  const { loggingIn, token, errors, payload } = state.loginUser;
+  const {
+    loggingIn,
+    token,
+    errors,
+    payload,
+    isAuthenticated
+  } = state.loginUser;
 
   return {
     loggingIn,
     token,
     errors,
-    payload
+    payload,
+    isAuthenticated
   };
 };
 
@@ -96,7 +103,8 @@ Login.propTypes = {
   loginRequestAction: PropTypes.func.isRequired,
   loggingIn: PropTypes.bool.isRequired,
   token: PropTypes.string,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  isAuthenticated: PropTypes.bool
 };
 
 export default connect(

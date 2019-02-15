@@ -4,6 +4,7 @@ import {
   LOGIN_CALL_FAILURE,
   SET_CURRENT_USER
 } from "../actionTypes/loginActionTypes";
+import isEmpty from "../utils/isEmpty";
 
 const initialState = {
   loggingIn: false,
@@ -20,7 +21,7 @@ const loginReducer = (state = initialState, action) => {
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: true,
+        isAuthenticated: !isEmpty(action.payload),
         payload: action.payload,
         logingIn: false
       };
