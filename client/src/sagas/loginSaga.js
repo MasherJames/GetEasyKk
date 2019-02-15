@@ -1,9 +1,11 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { LOGIN_CALL_REQUEST } from "../actionTypes/loginActionTypes";
 import {
   loginRequestFailure,
-  loginRequestSuccess
+  loginRequestSuccess,
+  setCurrentUser
 } from "../actions/loginActions";
 import { setTokenToLocalStorage, setAuthToken } from "../utils/auth";
 import history from "../history";
@@ -18,6 +20,8 @@ function* loginWorkerSaga(action) {
     yield put(loginRequestSuccess(response.data));
     setTokenToLocalStorage(response.data.token);
     setAuthToken(response.data.token);
+    const decoded = jwtDecode(response.data.token);
+    yield put(setCurrentUser(decoded));
     history.push("/dashboard");
   } catch (error) {
     yield put(loginRequestFailure(error.response.data));
