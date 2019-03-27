@@ -12,17 +12,9 @@ router.post(
   rideController.createRide
 );
 
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  rideController.getRides
-);
+router.get("/", rideController.getRides);
 
-router.get(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  rideController.getRide
-);
+router.get("/:id", rideController.getRide);
 
 router.delete(
   "/:id",
