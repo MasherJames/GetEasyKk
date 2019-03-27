@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-import Landing from "../components/layout/Landing";
-import Footer from "../components/layout/Footer";
-import NavBar from "../components/layout/NavBar";
-import Register from "../components/auth/Register";
-import Login from "../components/auth/Login";
+import Landing from "../components/Landing";
+import Footer from "../components/Footer";
+import NavBar from "../components/Nav";
+import Register from "../components/Register";
+import Login from "../components/Login";
 import history from "../history";
 
 export default class AppRoutes extends Component {

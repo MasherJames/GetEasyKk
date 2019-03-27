@@ -5,7 +5,6 @@ import store from "./store";
 import { setAuthToken } from "./utils/auth";
 import AppRoutes from "./routes/AppRoutes";
 import { setCurrentUser, logoutUser } from "./actions/loginActions";
-import "./App.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

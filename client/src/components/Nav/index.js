@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/loginActions";
+import "./nav.scss";
 
 class NavBar extends Component {
   onClickLogout = e => {

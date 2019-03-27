@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginRequestAction } from "../../actions/loginActions";
+import "./login.scss";
 
 class Login extends Component {
   constructor(props) {
