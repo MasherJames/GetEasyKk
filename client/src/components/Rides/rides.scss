@@ -1,0 +1,8 @@
+.rides {
+    display: grid;
+    font-size: 1.1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    padding: 3rem;
+}

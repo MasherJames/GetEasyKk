@@ -11,11 +11,11 @@ class Rides extends Component {
   }
 
   render() {
-    const { rides } = this.state;
-    console.log(this.state);
+    const { rides } = this.props;
+    console.log(rides);
     return (
       <div className="rides">
-        {rides && rides.map(ride => <Ride key={ride.id} ride={ride} />)}
+        {rides && rides.map(ride => <Ride key={ride._id} ride={ride} />)}
       </div>
     );
   }
@@ -29,7 +29,7 @@ const mapStateToProps = state => ({
 Rides.propTypes = {
   getRidesAction: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  rides: PropTypes.object.isRequired,
+  rides: PropTypes.array.isRequired,
   error: PropTypes.object.isRequired
 };
 

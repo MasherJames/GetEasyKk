@@ -6,9 +6,8 @@ import {
 
 const initialState = {
   isFetching: false,
-  rides: {},
-  error: {},
-  testing: ""
+  rides: [],
+  error: {}
 };
 
 const ridesReducer = (state = initialState, action) => {
@@ -16,24 +15,19 @@ const ridesReducer = (state = initialState, action) => {
     case GET_RIDES_REQUEST:
       return {
         ...state,
-        isFetching: true,
-        error: null,
-        testing: "sending request"
+        isFetching: true
       };
     case GET_RIDES_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        error: null,
-        rides: action.rides,
-        testing: "sending success"
+        rides: action.rides
       };
     case GET_RIDES_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: action.error,
-        testing: "sending failure"
+        error: action.error
       };
     default:
       return state;

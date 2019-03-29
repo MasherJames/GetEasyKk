@@ -6,17 +6,14 @@ import {
   getRidesActionFailure
 } from "../actions/ridesActions";
 
-const getRides = () => axios.get("/api/rides");
+const getRides = () => {
+  return axios.get("/api/rides");
+};
 
-function* getRidesWorkerSaga(action) {
+function* getRidesWorkerSaga() {
   try {
     const response = yield call(getRides);
-
-    if (response.data.status !== 200) {
-      yield put(getRidesActionFailure(response.data));
-    } else {
-      yield put(getRidesActionSuccess(response.data.rides));
-    }
+    yield put(getRidesActionSuccess(response.data.rides));
   } catch (error) {
     yield put(getRidesActionFailure(error.response.data));
   }

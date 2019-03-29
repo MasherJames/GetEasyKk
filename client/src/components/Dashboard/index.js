@@ -8,14 +8,16 @@ class Dashboard extends Component {
     return (
       <div className="user-container">
         <div className="side-container">
-          <Link to="/addride" className="side-link first">
+          <Link to="/addride" className="side-link">
             Add Ride
           </Link>
           <Link to="" className="side-link">
             Requests
           </Link>
         </div>
-        <div className="rides-container">asdfgh</div>
+        <div className="rides-container">
+          <Rides />
+        </div>
       </div>
     );
   }
