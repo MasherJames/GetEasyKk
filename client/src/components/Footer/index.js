@@ -4,7 +4,7 @@ import "./footer.scss";
 export default class Footer extends Component {
   render() {
     return (
-      <footer className="bg-dark text-white mt-5 p-4 text-center">
+      <footer className="footer-section">
         Copyright &copy; {new Date().getFullYear()} Ride My Way
       </footer>
     );

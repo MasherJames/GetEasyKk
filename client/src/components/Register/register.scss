@@ -1,0 +1,51 @@
+.container {
+    height: 90vh;
+    display: flex;
+    .register {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 45vw;
+        height: 80vh;
+        margin: auto;
+        background-color: rgb(184, 246, 253);
+        .register-head {
+            text-transform: uppercase;
+            border-bottom: 3px solid #48BcC8;
+        }
+        .have-account {
+            color: rgb(92, 91, 91);
+            margin-top: 1rem;
+        }
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            .btn {
+                padding: .7rem;
+                background-color: #48BcC8;
+                border: none;
+                cursor: pointer;
+                text-transform: uppercase;
+                outline: none;
+            }
+            &>* {
+                margin: .8rem;
+            }
+            .form-group {
+                .inputs {
+                    width: 30vw;
+                    padding: .7rem;
+                    outline: none;
+                    font-size: 1rem;
+                }
+                .invalid-input {
+                    border: 1px solid red;
+                }
+                .error {
+                    color: rgb(255, 31, 31);
+                }
+            }
+        }
+    }
+}

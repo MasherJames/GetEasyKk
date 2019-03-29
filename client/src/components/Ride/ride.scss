@@ -1,24 +1,20 @@
-.container {
+.postride-container {
     height: 90vh;
     display: flex;
-    .login {
+    .add-ride {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 45vw;
-        height: 70vh;
+        height: 80vh;
         margin: auto;
         background-color: rgb(184, 246, 253);
-        .login-head {
+        .ride-head {
             text-transform: uppercase;
             border-bottom: 3px solid #48BcC8;
         }
-        .lack-account {
-            color: rgb(92, 91, 91);
-            margin-top: 1rem;
-        }
-        .login-form {
+        .postRideForm {
             display: flex;
             flex-direction: column;
             .btn {
@@ -27,12 +23,13 @@
                 border: none;
                 cursor: pointer;
                 text-transform: uppercase;
+                outline: none;
             }
             &>* {
-                margin: 1.2rem;
+                margin: .8rem;
             }
             .form-group {
-                .inputs {
+                .ridefields {
                     width: 30vw;
                     padding: .7rem;
                     outline: none;

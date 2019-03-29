@@ -17,7 +17,7 @@ export default class UserValidator {
       .then(user => {
         if (user) {
           return res.status(409).json({
-            message: "User with this email already exists"
+            email: "User with this email already exists"
           });
         }
         next();

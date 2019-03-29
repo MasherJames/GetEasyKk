@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -15,12 +16,6 @@ class Register extends Component {
       confirmPassword: "",
       errors: {}
     };
-  }
-
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
   }
 
   handleChange = e => {
@@ -40,6 +35,12 @@ class Register extends Component {
     this.props.registerRequestAction(newUser);
   };
 
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -47,78 +48,77 @@ class Register extends Component {
   }
 
   render() {
-    const { success, errors } = this.state;
+    const { errors } = this.state;
     return (
-      <div>
-        <div className="container">
-          <div className="col-md-8 m-auto">
-            <p className="lead text-center">Create Your Account</p>
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={this.props.email}
-                  onChange={this.handleChange}
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.email
-                  })}
-                />
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <input
-                  type="username"
-                  name="username"
-                  placeholder="Username"
-                  value={this.props.username}
-                  onChange={this.handleChange}
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.username
-                  })}
-                />
-                {errors.username && (
-                  <div className="invalid-feedback">{errors.username}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={this.props.password}
-                  onChange={this.handleChange}
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.password
-                  })}
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="confirmPassword"
-                  value={this.props.confirmPassword}
-                  onChange={this.handleChange}
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.confirmPassword
-                  })}
-                />
-                {errors.confirmPassword && (
-                  <div className="invalid-feedback">
-                    {errors.confirmPassword}
-                  </div>
-                )}
-              </div>
-              <input type="submit" className="btn btn-info btn-block mt-4" />
-            </form>
-          </div>
+      <div className="container">
+        <div className="register">
+          <h2 className="register-head">Sign Up</h2>
+          <Link to="/login" className="have-account">
+            Already have an account ?
+          </Link>
+          <form onSubmit={this.handleSubmit} className="register-form">
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                className={classnames("inputs", {
+                  "invalid-input": errors.email
+                })}
+              />
+              {errors.email && <div className="error">{errors.email}</div>}
+            </div>
+            <div className="form-group">
+              <input
+                type="username"
+                name="username"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                className={classnames("inputs", {
+                  "invalid-input": errors.username
+                })}
+              />
+              {errors.username && (
+                <div className="error">{errors.username}</div>
+              )}
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                className={classnames("inputs", {
+                  "invalid-input": errors.password
+                })}
+              />
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="confirmPassword"
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                className={classnames("inputs", {
+                  "invalid-input": errors.confirmPassword
+                })}
+              />
+              {errors.confirmPassword && (
+                <div className="error">{errors.confirmPassword}</div>
+              )}
+            </div>
+            <button type="submit" className="btn">
+              Sign up
+            </button>
+          </form>
         </div>
       </div>
     );

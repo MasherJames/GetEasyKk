@@ -9,73 +9,49 @@ class NavBar extends Component {
   onClickLogout = e => {
     e.preventDefault();
     this.props.logoutUser();
+    window.location.href = "/login";
   };
 
   render() {
     const { isAuthenticated } = this.props.loginUser;
-
-    const guestLinks = (
-      <ul className="header-nav__list-items navbar-nav ml-4">
-        <li className="list-item nav-item">
-          <Link to="/register" className="list-item__link nav-link">
-            Sign Up
-          </Link>
-        </li>
-        <li className="list-item nav-item">
-          <Link to="/login" className="list-item__link nav-link">
-            Login
-          </Link>
-        </li>
-      </ul>
+    const isAuth = (
+      <div className="side-links">
+        <a onClick={this.onClickLogout.bind(this)} className="nav-link logout">
+          Logout
+        </a>
+        <Link to="/rides" className="nav-link ride">
+          Rides
+        </Link>
+      </div>
     );
 
-    const authenticatedUserLinks = (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <a
-            href=""
-            onClick={this.onClickLogout.bind(this)}
-            className="nav-link"
-          >
-            Logout
-          </a>
-        </li>
-      </ul>
+    const notAuth = (
+      <div className="side-links">
+        <Link to="/rides" className="nav-link ride">
+          Rides
+        </Link>
+        <Link to="/register" className="nav-link register">
+          Register
+        </Link>
+        <Link to="/login" className="nav-link login">
+          Login
+        </Link>
+      </div>
     );
     return (
-      <nav className="header-nav navbar navbar-expand-sm bg-light bg-dark ">
-        <div className="container">
-          <Link to="/" className="nav-header  nav-link">
+      <div className="main-nav">
+        <div className="root-link">
+          <Link to="/" className="main-link">
             Ride My Way
           </Link>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/rides">
-                  {" "}
-                  Rides
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authenticatedUserLinks : guestLinks}
-          </div>
         </div>
-      </nav>
+        {isAuthenticated ? isAuth : notAuth}
+      </div>
     );
   }
 }
 
-NavBar.PropTypes = {
+NavBar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   loginUser: PropTypes.object.isRequired
 };

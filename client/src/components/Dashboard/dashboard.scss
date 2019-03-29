@@ -1,0 +1,20 @@
+.user-container {
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    .side-container {
+        background-color: rgb(184, 240, 247);
+        display: grid;
+        grid-template-rows: 3rem 3rem;
+        .side-link {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: all .3s;
+            &:hover {
+                background-color: black;
+            }
+        }
+    }
+    .rides-container {}
+}

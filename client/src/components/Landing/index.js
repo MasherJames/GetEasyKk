@@ -1,27 +1,36 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./landing.scss";
 
-export default class Landing extends Component {
+class Landing extends Component {
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
   render() {
     return (
-      <div>
-        <div className="header">
-          <div className="header-content">
-            <h1 className="header-text">
-              <span className="header-text__main">
-                This is a car pooling application
-              </span>
-              <span className="header-text__sub">
-                Create an account and offer or get a ride for free
-              </span>
-            </h1>
-            <Link to="/register" className="start-btn btn">
-              Get Started
-            </Link>
-          </div>
+      <div className="landing">
+        <div className="landing-cont">
+          <h1 className="landing-main">App For Sharing Rides To Work</h1>
+          <h3 className="landing-sub">Connect With your colleagues easily</h3>
+          <Link to="/register" className="register-landing">
+            Get Started
+          </Link>
         </div>
       </div>
     );
   }
 }
+
+Landing.propTypes = {
+  isAuthenticated: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.loginUser.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);
