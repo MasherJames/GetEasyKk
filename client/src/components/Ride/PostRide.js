@@ -16,11 +16,6 @@ class PostRide extends Component {
     };
   }
 
-  componentDidMount() {
-    if (!this.props.isAuthenticated) {
-      this.props.history.push("/");
-    }
-  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -107,15 +102,13 @@ class PostRide extends Component {
 const mapStateToProps = state => ({
   ride: state.postRide.ride,
   isPosting: state.postRide.isPosting,
-  errors: state.postRide.errors,
-  isAuthenticated: state.loginUser.isAuthenticated
+  errors: state.postRide.errors
 });
 
 PostRide.propTypes = {
   postRideRequestAction: PropTypes.func.isRequired,
   isPosting: PropTypes.bool.isRequired,
-  errors: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired
 };
 
 export default connect(
