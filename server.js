@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import passport from "passport";
+import path from "path";
 import configs from "./config/config";
 import UserRouter from "./routes/api/user";
 import RideRouter from "./routes/api/ride";
@@ -17,10 +18,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-mongoose.connect(
-  config.DATABASE_URL,
-  { useNewUrlParser: true }
-);
+mongoose.connect(config.DATABASE_URL, { useNewUrlParser: true });
 
 mongoose.connection
   .once("open", () => {
@@ -45,6 +43,15 @@ app.use(
   passport.authenticate("jwt", { session: false }),
   RequestRouter
 );
+
+if (process.env.NODE_ENV === "production") {
+  // serve static files
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const server = app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}`);
