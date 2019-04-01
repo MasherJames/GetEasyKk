@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "server": "nodemon start.js",
+        "server": "node --exec babel-node start.js",
         "test": "NODE_ENV=testing mocha --timeout 30000 --compilers js:babel-register  --require babel-polyfill ./test/**/*.test.js",
         "client": "npm start --prefix client",
         "dev": "concurrently \"npm run server\" \"npm run client\"",
