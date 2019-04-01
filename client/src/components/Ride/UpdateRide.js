@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import classnames from "classnames";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { postRideRequestAction } from "../../actions/postRideActions";
+import PropTypes from "prop-types";
+import { updateRideAction, getRideAction } from "../../actions/ridesActions";
 import "./ride.scss";
 
-class PostRide extends Component {
+class UpdateRide extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +14,17 @@ class PostRide extends Component {
       capacity: "",
       errors: {}
     };
+  }
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.getRideAction(id);
+    const { ride } = this.props;
+    this.setState({
+      origin: ride.origin,
+      destination: ride.destination,
+      capacity: ride.capacity
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,14 +39,16 @@ class PostRide extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const newRide = {
+    const id = this.props.match.params.id;
+    console.log(this.props);
+    const updatedRide = {
       origin: this.state.origin,
       destination: this.state.destination,
       capacity: this.state.capacity
     };
+    console.log("Updated");
 
-    this.props.postRideRequestAction(newRide);
+    // this.props.updateRideAction(id, updatedRide);
   };
 
   render() {
@@ -44,7 +57,7 @@ class PostRide extends Component {
     return (
       <div className="postride-container">
         <div className="add-ride">
-          <h2 className="ride-head">Create Ride</h2>
+          <h2 className="ride-head">Update Ride</h2>
           <form onSubmit={this.handleSubmit} className="postRideForm">
             <div className="form-group">
               <input
@@ -90,7 +103,7 @@ class PostRide extends Component {
               )}
             </div>
             <button type="submit" className="btn">
-              Add Ride
+              Update Ride
             </button>
           </form>
         </div>
@@ -100,18 +113,26 @@ class PostRide extends Component {
 }
 
 const mapStateToProps = state => ({
-  ride: state.postRide.ride,
-  isPosting: state.postRide.isPosting,
-  errors: state.postRide.errors
+  ride: state.getRide.ride,
+  newRide: state.updateRide.ride,
+  isUpdating: state.updateRide.isPosting,
+  errors: state.updateRide.errors
 });
 
-PostRide.propTypes = {
-  postRideRequestAction: PropTypes.func.isRequired,
-  isPosting: PropTypes.bool.isRequired,
-  errors: PropTypes.object.isRequired
+UpdateRide.propTypes = {
+  updateRideAction: PropTypes.func.isRequired,
+  getRideAction: PropTypes.func.isRequired,
+  isUpdating: PropTypes.bool,
+  errors: PropTypes.object.isRequired,
+  ride: PropTypes.object.isRequired
+};
+
+const actions = {
+  getRideAction,
+  updateRideAction
 };
 
 export default connect(
   mapStateToProps,
-  { postRideRequestAction }
-)(PostRide);
+  actions
+)(UpdateRide);

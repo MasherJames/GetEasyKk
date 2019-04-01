@@ -12,7 +12,7 @@ class Rides extends Component {
 
   render() {
     const { rides } = this.props;
-    console.log(rides);
+
     return (
       <div className="rides">
         {rides && rides.map(ride => <Ride key={ride._id} ride={ride} />)}

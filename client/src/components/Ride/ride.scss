@@ -47,6 +47,7 @@
 }
 
 .ride-cont {
+    text-decoration: none;
     background-color: grey;
     color: #48BcC8;
     border-radius: .5rem;
@@ -57,18 +58,39 @@
     &>* {
         padding: .5rem
     }
-    .ride-links {
+    .request-link {
+        text-decoration: none;
+        background-color: #48BcC8;
+        width: 15vw;
+        color: #fff;
+    }
+}
+
+.single-ride {
+    height: 80vh;
+    display: flex;
+    .ride-card {
         display: flex;
-        justify-content: space-between;
-        .ride-link {
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(144, 221, 230);
+        width: 60vw;
+        height: 70vh;
+        margin: auto;
+        &>* {
+            padding: .7rem;
+        }
+        .s-link {
             text-decoration: none;
-            padding: .5rem;
-            .delete-icon {
-                width: 2rem;
-            }
-            .update-icon {
-                width: 2rem
-            }
+            color: black;
+            width: 7vw;
+        }
+        .edit {
+            margin-bottom: 1rem;
+            background-color: green;
+        }
+        .delete {
+            background-color: red;
         }
     }
 }

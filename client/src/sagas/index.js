@@ -1,15 +1,23 @@
 import { all } from "redux-saga/effects";
 import registerWatcherSaga from "./registerSaga";
 import loginWatcherSaga from "./loginSaga";
-import getRidesWorkerSaga from "./getRidesSaga";
+import {
+  getRidesWatcherSaga,
+  getRideWatcherSaga,
+  updateRideWatcherSaga,
+  deleteRideWatcherSaga
+} from "./getRidesSaga";
 import postRideWatcherSaga from "./postRideSaga";
 
 function* rootSaga() {
   yield all([
     registerWatcherSaga(),
     loginWatcherSaga(),
-    getRidesWorkerSaga(),
-    postRideWatcherSaga()
+    getRidesWatcherSaga(),
+    postRideWatcherSaga(),
+    getRideWatcherSaga(),
+    updateRideWatcherSaga(),
+    deleteRideWatcherSaga()
   ]);
 }
 
