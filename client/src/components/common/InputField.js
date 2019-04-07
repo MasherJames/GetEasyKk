@@ -1,15 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import "../Register/register.scss";
 
-const InputField = ({
-  name,
-  placeholder,
-  value,
-  error,
-  type,
-  handleChange
-}) => {
+const InputField = ({ name, placeholder, value, error, type, onChange }) => {
   return (
     <div className="form-group">
       <input
@@ -17,7 +11,7 @@ const InputField = ({
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         className={classnames("inputs", {
           "invalid-input": error
         })}
@@ -33,7 +27,7 @@ InputField.propTypes = {
   value: PropTypes.string.isRequired,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 InputField.defaultProps = {

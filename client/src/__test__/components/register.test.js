@@ -1,6 +1,7 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import Register from "../../components/Register";
+import InputField from "../../components/common/InputField";
 
 describe("<Register />", () => {
   const wrapper = shallow(<Register />);

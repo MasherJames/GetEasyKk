@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerRequestAction } from "../../actions/registerActions";
+import InputField from "../common/InputField";
 import "./register.scss";
 
 class Register extends Component {
@@ -57,64 +57,37 @@ class Register extends Component {
             Already have an account ?
           </Link>
           <form onSubmit={this.handleSubmit} className="register-form">
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                className={classnames("inputs", {
-                  "invalid-input": errors.email
-                })}
-              />
-              {errors.email && <div className="error">{errors.email}</div>}
-            </div>
-            <div className="form-group">
-              <input
-                type="username"
-                name="username"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.handleChange}
-                className={classnames("inputs", {
-                  "invalid-input": errors.username
-                })}
-              />
-              {errors.username && (
-                <div className="error">{errors.username}</div>
-              )}
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                className={classnames("inputs", {
-                  "invalid-input": errors.password
-                })}
-              />
-              {errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="confirmPassword"
-                value={this.state.confirmPassword}
-                onChange={this.handleChange}
-                className={classnames("inputs", {
-                  "invalid-input": errors.confirmPassword
-                })}
-              />
-              {errors.confirmPassword && (
-                <div className="error">{errors.confirmPassword}</div>
-              )}
-            </div>
+            <InputField
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              error={errors.email}
+              type="email"
+              onChange={this.handleChange}
+            />
+            <InputField
+              name="username"
+              placeholder="Username"
+              value={this.state.username}
+              error={errors.username}
+              onChange={this.handleChange}
+            />
+            <InputField
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              error={errors.password}
+              onChange={this.handleChange}
+            />
+            <InputField
+              name="confirmPassword"
+              type="password"
+              placeholder="confirmPassword"
+              value={this.state.confirmPassword}
+              error={errors.confirmPassword}
+              onChange={this.handleChange}
+            />
             <button type="submit" className="btn">
               Sign up
             </button>
